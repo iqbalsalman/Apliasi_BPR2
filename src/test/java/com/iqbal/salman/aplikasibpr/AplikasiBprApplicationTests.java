@@ -1,10 +1,14 @@
 package com.iqbal.salman.aplikasibpr;
 
 import com.iqbal.salman.aplikasibpr.master.Agama;
+import com.iqbal.salman.aplikasibpr.master.Nasabah;
+import com.iqbal.salman.aplikasibpr.master.NasabahBadanUsaha;
+import com.iqbal.salman.aplikasibpr.master.NasabahPerorangan;
 import com.iqbal.salman.aplikasibpr.master.Pendidikan;
 import com.iqbal.salman.aplikasibpr.master.RoleSecurity;
 import com.iqbal.salman.aplikasibpr.master.UserSecurity;
 import com.iqbal.salman.aplikasibpr.service.AgamaService;
+import com.iqbal.salman.aplikasibpr.service.NasabahService;
 import com.iqbal.salman.aplikasibpr.service.PendidikanService;
 import com.iqbal.salman.aplikasibpr.service.UserService;
 
@@ -31,6 +35,8 @@ public class AplikasiBprApplicationTests extends TestCase {
     private PendidikanService pendidikanService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private NasabahService nasabahService;
 
     @Test
     public void contextLoads() {
@@ -94,6 +100,30 @@ public class AplikasiBprApplicationTests extends TestCase {
         UserSecurity dimas = this.userService.findByUsername("dimas");
         assertNotNull(dimas);
         assertEquals(1, dimas.getListRole().size());
+
+    }
+
+    @Test
+    public void tesSimpanNasabah() {
+        NasabahPerorangan dimas = new NasabahPerorangan();
+        dimas.setNamaLengkap("Dimas Maryanto");
+        dimas.setJenisKelamin("L");
+        dimas.setNomerIdentitas("6212423408234");
+        dimas.setAlamat("Jl. Bukit indah no B8");
+        dimas = this.nasabahService.save(dimas);
+        assertNotNull(dimas.getId());
+
+        dimas = this.nasabahService.findPeroranganById(dimas.getId());
+        assertNotNull(dimas);
+        Nasabah bukan = this.nasabahService.findBadanUsahaById(dimas.getId());
+        assertNull(bukan);
+
+        NasabahBadanUsaha tabeldata = new NasabahBadanUsaha();
+        tabeldata.setNamaLengkap("Tabel Data Informatika");
+        tabeldata.setNomorNpwp("1242421423");
+        tabeldata.setAlamat("Jl. margawangi raya no 8");
+        tabeldata = this.nasabahService.save(tabeldata);
+        assertNotNull(tabeldata.getId());
 
     }
 

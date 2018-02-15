@@ -31,6 +31,7 @@ public class Agama {
 
     @Id
     @GenericGenerator(name = "agama_id", strategy = "uuid2")
+    
     @GeneratedValue(generator = "agama_id")
     @Column(name = "kode_agama")
     private String id;
