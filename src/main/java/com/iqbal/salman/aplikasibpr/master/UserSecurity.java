@@ -56,6 +56,12 @@ public class UserSecurity {
     @Column(name = "created_date", nullable = false)
     private Timestamp createdDate;
 
+    @Column(name = "nama_lengkap ", nullable = false, length = 25)
+    private  String nama_lengkap;
+
+    @Column(name = "biodata")
+    private  String biodata;
+
     @OneToMany
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id", nullable = false),
