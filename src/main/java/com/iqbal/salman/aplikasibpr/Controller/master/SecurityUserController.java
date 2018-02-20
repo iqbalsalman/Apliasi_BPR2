@@ -40,6 +40,9 @@ public class SecurityUserController {
     public String submitUser(@Valid @ModelAttribute UserSecurity user, BindingResult bindingresult , RedirectAttributes redirect) {
         user.setCreatedDate(Timestamp.valueOf(LocalDateTime.now()));
         user.setCeatedBy("admin");
+        if (bindingresult.hasErrors()) {
+            return "pages/UserSecurity/form";
+        }
         userService.save(user);
         redirect.addFlashAttribute("submitBerhasil", "Data Berhasil Dimasukkan!");
         return "redirect:/userSecurity/list";

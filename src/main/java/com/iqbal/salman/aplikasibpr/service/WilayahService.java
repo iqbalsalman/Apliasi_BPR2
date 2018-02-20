@@ -30,9 +30,23 @@ public class WilayahService {
     public List<Provinsi> findAllProvinsi() {
         return this.provinsiRepository.findAll();
     }
-
+    @Transactional(readOnly = false)
     public List<KotaKabupaten> findAllKotaKabupaten() {
         return this.kotaRepository.findAll();
+    }
+
+    @Transactional(readOnly = false)
+    public KotaKabupaten save(KotaKabupaten x){
+        return this.kotaRepository.save(x);
+    }
+
+    public KotaKabupaten findById(String kode) {
+        return kotaRepository.findOne(kode);
+    }
+
+    @Transactional(readOnly = false)
+    public void delete(String del){
+        this.kotaRepository.delete(del);
     }
 
 }

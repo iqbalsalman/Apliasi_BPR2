@@ -16,11 +16,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
@@ -56,6 +60,9 @@ public class UserSecurity {
     @Column(name = "created_date", nullable = false)
     private Timestamp createdDate;
 
+    @NotNull(message = "tidak boleh kosong!")
+    @NotEmpty(message = "tidak boleh string kosong!")
+    @Size(min = 5, max = 25, message = "agama jumlah karakternya minal 5 sampai 50 karakter")
     @Column(name = "nama_lengkap ", nullable = false, length = 25)
     private  String nama_lengkap;
 

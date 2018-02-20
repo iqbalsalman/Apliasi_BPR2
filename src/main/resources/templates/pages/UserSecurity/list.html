@@ -9,7 +9,7 @@
 </head>
 <body>
 <section layout:fragment="content">
-    <div class="alert alert-success" th:if="${alertSuccess} != null" th:text="${alertSuccess}"></div>
+    <div class="alert alert-success" th:if="${submitBerhasil} != null" th:text="${submitBerhasil}"></div>
     <div class="alert alert-danger" th:if="${NotAvalibel} != null" th:text="${NotAvalibel}"></div>
     <a href="/userSecurity/formaslkfjasdf" th:href="@{/userSecurity/form}" class="btn btn-success">Tambah data</a>
     <div class="table-responsive">
@@ -28,8 +28,8 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="userSecurity : ${listsecurity}">
-                <td th:text="${userSecurity.id}">1</td>
+            <tr th:each="userSecurity, itrStat : ${listsecurity}">
+                <td th:text="${itrStat.count}">1</td>
                 <td th:text="${userSecurity.nama}"></td>
                 <td th:text="${userSecurity.password}"></td>
                 <td th:text="${userSecurity.active}"></td>
@@ -41,6 +41,7 @@
                     <a th:href="${'/userSecurity/form/' + userSecurity.id}" class="btn btn-danger">Edit</a>   </td>
             </tr>
             </tbody>
+
         </table>
     </div>
 </section>

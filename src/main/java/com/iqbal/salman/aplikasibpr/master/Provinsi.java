@@ -44,7 +44,7 @@ public class Provinsi {
     @Column(name = "created_by", length = 20)
     private String createBy;
     
-    @OneToMany(mappedBy = "provinsi")
+    @OneToMany(mappedBy = "kota")
     private List<KotaKabupaten> liskota = new ArrayList<>();
 
 }
