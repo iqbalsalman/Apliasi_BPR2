@@ -26,8 +26,12 @@ public class UserService {
     @Autowired
     private RoleRepository roleRepository;
 
-    public List<RoleSecurity> listRole(){
+    public List<RoleSecurity> listRole() {
         return this.roleRepository.findAll();
+    }
+
+    public List<UserSecurity> findUser() {
+        return this.userRepository.findAll();
     }
 
     @Transactional(readOnly = false)
@@ -46,10 +50,6 @@ public class UserService {
     @Transactional(readOnly = false)
     public void delete(String x) {
         this.userRepository.delete(x);
-    }
-
-    public List<UserSecurity> findUser(){
-      return this.userRepository.findAll();
     }
 
         public UserSecurity findByUsername(String username) {

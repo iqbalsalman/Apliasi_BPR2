@@ -41,6 +41,17 @@
             <input type="text" id="namaleng" class="form-control" name="namaleng" th:field="*{nama_lengkap}"/>
             <div th:if="${#fields.hasErrors('nama_lengkap')}" th:errors="*{nama_lengkap}" class="alert alert-danger">Age Error</div>
         </div>
+        <div class="form-group">
+            <label for="akses">Daftar Akess</label>
+            <select name="akses" id="akses" multiple class="form-control" th:field="*{listRole}">
+                <option th:each="role, itrStat : ${roles}" th:value="${role.id}" th:valuetype="String"
+                        th:text="${role.nama}"></option>
+            </select>
+            <div th:if="${#fields.hasErrors('listRole')}"
+                 th:errors="*{listRole}" class="alert alert-danger">Age Error
+            </div>
+        </div>
+
 
         <div class="form-group">
             <button type="submit" class="btn btn-primary">Kirim</button>

@@ -17,7 +17,6 @@ import org.springframework.data.repository.CrudRepository;
 public interface RoleRepository extends CrudRepository<RoleSecurity, Long> {
         List<RoleSecurity> findAll();
 
-    public UserSecurity findByNama(String username);
     
 }
 

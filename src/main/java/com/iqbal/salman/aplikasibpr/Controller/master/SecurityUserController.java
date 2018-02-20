@@ -24,15 +24,17 @@ public class SecurityUserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping(value = {"/", "/list"})
-    public String lisSecurity(ModelMap params) {
+    @GetMapping(value = {"/", "list"})
+    public String listUser(ModelMap params) {
         params.addAttribute("listsecurity", userService.findUser());
         return "/pages/UserSecurity/list";
     }
 
+
     @GetMapping("/form")
     public  String Scurityadd(UserSecurity userSecurity,ModelMap paramp){
         paramp.addAttribute("userSecurity", userSecurity);
+        paramp.addAttribute("roles", userService.listRole());
         return "/pages/UserSecurity/form";
     }
 
