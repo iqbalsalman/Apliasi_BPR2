@@ -1,5 +1,6 @@
 package com.iqbal.salman.aplikasibpr.Controller.master;
 
+import com.iqbal.salman.aplikasibpr.master.Agama;
 import com.iqbal.salman.aplikasibpr.master.KotaKabupaten;
 import com.iqbal.salman.aplikasibpr.service.WilayahService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class KabupatenController {
     }
 
     @PostMapping("/submit")
-    public  String SubmitKota(@Valid @ModelAttribute KotaKabupaten kotaKabupaten, BindingResult bindingResult,ModelMap params,
+    public  String SubmitKota(@Valid @ModelAttribute KotaKabupaten kotaKabupaten, BindingResult bindingResult, ModelMap params,
                               RedirectAttributes redirect){
         if(bindingResult.hasErrors()){
             params.addAttribute("listProvinsi",wilayahService.findAllProvinsi());
@@ -47,7 +48,7 @@ public class KabupatenController {
         redirect.addFlashAttribute("alertSuccess","Data Berhasil Disimpan");
         return  "redirect:/kab/list";
     }
-    @RequestMapping("/hapus{id}")
+    @RequestMapping("/hapus/{id}")
     public String hapusData(@PathVariable (value = "id" )String idu, RedirectAttributes rederect){
         wilayahService.delete(idu);
         rederect.addFlashAttribute("alertSuccess","Data Berhasil Di hapus");
@@ -55,9 +56,9 @@ public class KabupatenController {
     }
 
     @GetMapping("/form/{id}")
-    public  String FormEdit(@PathVariable (value = "id") String id, ModelMap params,
+    public  String FormEdit(@PathVariable (value = "id") String idu, ModelMap params,
                             RedirectAttributes rederect){
-       KotaKabupaten kotaKabupaten = this.wilayahService.findById(id);
+       KotaKabupaten kotaKabupaten = this.wilayahService.findById(idu);
         params.addAttribute("listProvinsi", wilayahService.findAllProvinsi());
         if (kotaKabupaten != null) {
             params.addAttribute("kotaKabupaten", kotaKabupaten);

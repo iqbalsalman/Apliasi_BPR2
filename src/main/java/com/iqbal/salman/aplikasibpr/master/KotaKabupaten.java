@@ -6,18 +6,15 @@
 package com.iqbal.salman.aplikasibpr.master;
 
 import java.sql.Timestamp;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -30,10 +27,12 @@ import org.hibernate.validator.constraints.NotEmpty;
 @NoArgsConstructor
 @Entity
 @Table(name = "master_kota_kabupaten")
+@ToString(exclude = "kec")
 public class KotaKabupaten {
 
     @Id
     @GenericGenerator(name = "uuid_kotakab", strategy = "uuid2")
+    @GeneratedValue(generator = "uuid_kotakab")
     @Column(name = "kode_kota", nullable = false, unique = true)
     private String id;
 
@@ -49,4 +48,7 @@ public class KotaKabupaten {
     @ManyToOne
     @JoinColumn(name = "provinsi_id", nullable = false)
     private Provinsi kota;
+
+    @OneToMany(mappedBy = "kec")
+    private List<Kecamatan> kec = new ArrayList<>();
 }

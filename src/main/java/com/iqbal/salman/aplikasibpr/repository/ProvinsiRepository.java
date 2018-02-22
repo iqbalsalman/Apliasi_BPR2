@@ -6,8 +6,6 @@
 package com.iqbal.salman.aplikasibpr.repository;
 
 import com.iqbal.salman.aplikasibpr.master.Provinsi;
-import java.io.Serializable;
-import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
 /**
@@ -16,6 +14,6 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface ProvinsiRepository extends CrudRepository<Provinsi, String> {
     
-      public List<Provinsi> findAll();
+      public Iterable<Provinsi> findAll();
     
 }

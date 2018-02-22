@@ -12,38 +12,38 @@
     <form th:action="@{/userSecurity/submit}" th:object="${userSecurity}" th:method="post" action="/userSecurity/submit" method="post">
         <div class="form-group">
         <label for="kodeSecurity">Kode User</label>
-        <input type="text" id="kodeSecurity" class="form-control" name="kodeSecurity" th:field="*{id}" readonly/>
+        <input type="text" id="kodeSecurity" class="form-control" ="kodeSecurity" th:field="*{id}" readonly/>
         </div>
         <div class="form-group">
             <label for="namauser">Nama Users</label>
-            <input type="text" id="namauser" class="form-control" name="namauser" th:field="*{nama}"/>
+            <input type="text" id="namauser" class="form-control" ="namauser" th:field="*{nama}"/>
         </div>
         <div class="form-group">
             <label for="Password">Password</label>
-            <input type="password" id="Password" class="form-control" name="Password" th:field="*{password}"/>
+            <input type="password" id="Password" class="form-control" ="Password" th:field="*{password}"/>
         </div>
         <div class="form-group">
             <label for="actife">Is Active</label><br/>
-            <!--<label class="radio-inline"><input type="radio" name="isActive" value="true" th:field="*{active}">Aktif</label>-->
-            <!--<label class="radio-inline"><input type="radio" name="isActive" value="false" th:field="*{active}">Tidak Aktif</label>-->
-            <select name="actife" id="actife" th:field="*{active}">
+            <!--<label class="radio-inline"><input type="radio" ="isActive" value="true" th:field="*{active}">Aktif</label>-->
+            <!--<label class="radio-inline"><input type="radio" ="isActive" value="false" th:field="*{active}">Tidak Aktif</label>-->
+            <select ="actife" id="actife" th:field="*{active}">
                 <option value="true">True</option>
                 <option value="false">False</option>
             </select>
         </div>
         <div class="form-group">
             <label for="biodata">Biodata Diri</label>
-            <textarea name="biodata" th:field="*{biodata}" class="form-control" id="biodata" cols="30"
+            <textarea ="biodata" th:field="*{biodata}" class="form-control" id="biodata" cols="30"
                       +                      rows="10"></textarea>
         </div>
         <div class="form-group">
             <label for="namaleng">Nama Lengkap</label>
-            <input type="text" id="namaleng" class="form-control" name="namaleng" th:field="*{nama_lengkap}"/>
+            <input type="text" id="namaleng" class="form-control" ="namaleng" th:field="*{nama_lengkap}"/>
             <div th:if="${#fields.hasErrors('nama_lengkap')}" th:errors="*{nama_lengkap}" class="alert alert-danger">Age Error</div>
         </div>
         <div class="form-group">
             <label for="akses">Daftar Akess</label>
-            <select name="akses" id="akses" multiple class="form-control" th:field="*{listRole}">
+            <select ="akses" id="akses" multiple class="form-control" th:field="*{listRole}">
                 <option th:each="role, itrStat : ${roles}" th:value="${role.id}" th:valuetype="String"
                         th:text="${role.nama}"></option>
             </select>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout/Home}">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Master Users</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="alert alert-success" th:if="${Sukses} != null" th:text="${Sukses}"></div>
+    <div class="alert alert-danger" th:if="${NotAvalibel} != null" th:text="${NotAvalibel}"></div>
+    <a href="/kecamatan/formaslkfjasdf" th:href="@{/kecamatan/form}" class="btn btn-success">Tambah data</a>
+    <div class="table-responsive">
+        <table class="table table-striped table-striped  table-hover table-responsive">
+            <thead>
+            <tr>
+                <th>Nomor</th>
+                <th>Nama</th>
+                <th>Kode Pos</th>
+                <th>Created By</th>
+                <th>Kota</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="kec, itrStat : ${kecamatan}">
+                <td th:text="${itrStat.count}">1</td>
+                <td th:text="${kec.nama}"></td>
+                <td th:text="${kec.pos}"></td>
+                <td th:text="${kec.createdBy}"></td>
+                <td th:text="${kec.kec.nama}"></td>
+                <td><a th:href="${'/kecamatan/hapus/' + kec.id}" class="btn btn-info">Hapus</a>
+                    <a th:href="${'/kecamatan/form/' + kec.id}" class="btn btn-danger">Edit</a>   </td>
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+</section>
+</body>
+</html>

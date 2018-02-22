@@ -8,10 +8,12 @@ package com.iqbal.salman.aplikasibpr.repository;
 import com.iqbal.salman.aplikasibpr.master.Nasabah;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.List;
+
 /**
  *
  * @author iqbal
  */
 public interface NasabahRepository extends CrudRepository<Nasabah, String> {
-    
+    public List<Nasabah> findAll();
 }

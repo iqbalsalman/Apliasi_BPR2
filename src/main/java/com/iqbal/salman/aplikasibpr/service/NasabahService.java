@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  *
  * @author iqbal
@@ -30,7 +32,7 @@ public class NasabahService {
     private NasabahPeroranganRepository peroranganRepository;
 
     @Autowired
-    private NasabahBadanUsahaRepository  badanUsahaRepository;
+    private NasabahBadanUsahaRepository badanUsahaRepository;
 
     @Transactional
     public NasabahPerorangan save(NasabahPerorangan nasabah) {
@@ -46,13 +48,41 @@ public class NasabahService {
     public void delete(Nasabah nasabah) {
         this.nasabahRepository.delete(nasabah);
     }
+    @Transactional
+    public void delete(String idup) {
+        this.nasabahRepository.delete(idup);
+    }
+    @Transactional
+    public void delete(NasabahBadanUsaha nasabah) {
+        this.nasabahRepository.delete(nasabah);
+    }
 
-    public NasabahPerorangan findPeroranganById(String id) {
-        return this.peroranganRepository.findOne(id);
+    @Transactional(readOnly = false)
+    public NasabahPerorangan findById(String kode) {
+        return this.peroranganRepository.findOne(kode);
     }
 
     public NasabahBadanUsaha findBadanUsahaById(String id) {
         return this.badanUsahaRepository.findOne(id);
+    }
+    @Transactional
+    public Nasabah save(Nasabah nasabah) {
+        return this.nasabahRepository.save(nasabah);
+    }
+    @Transactional(readOnly = false)
+    public List<Nasabah> findAll(Nasabah nasabah) {
+        return this.nasabahRepository.findAll();
+    }
+
+    @Transactional(readOnly = false)
+    public List<NasabahPerorangan> findAllNasabahPerorangan() {
+        return this.peroranganRepository.findAll();
+    }
+
+    @Transactional(readOnly = false)
+    public List<NasabahBadanUsaha> findAllNasabahBadan() {
+        return this.badanUsahaRepository.findAll();
+
     }
 
 }

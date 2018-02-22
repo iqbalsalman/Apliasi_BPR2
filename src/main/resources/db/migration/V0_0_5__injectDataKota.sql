@@ -21,4 +21,12 @@ VALUES
   ('003', 'Banten', now(), 'migration', '001');
 
 
+INSERT INTO kecamatan_bandung (id_kecamatan , nama_kecamatan,
+kode_pos, created_by, kabupaten_id)
+VALUES
+  ('001', 'Buah Batu', '4056', 'migration', '001');
+
+
+
+
 

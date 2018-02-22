@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout/Home}">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Master Users</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="alert alert-success" th:if="${Sukses} != null" th:text="${Sukses}"></div>
+    <div class="alert alert-danger" th:if="${NotAvalibel} != null" th:text="${NotAvalibel}"></div>
+    <a href="/userSecurity/formaslkfjasdf" th:href="@{/kelurahan/form}" class="btn btn-success">Tambah data</a>
+    <div class="table-responsive">
+        <table class="table table-striped table-striped  table-hover table-responsive">
+            <thead>
+            <tr>
+                <th>Nomor</th>
+                <th>Nama</th>
+                <th>Kode Pos</th>
+                <th>Nama Kecamatan</th>
+
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="kel, itrStat : ${listkel}">
+                <td th:text="${itrStat.count}">1</td>
+                <td th:text="${kel.nama_kel}"></td>
+                <td th:text="${kel.pos_kel}"></td>
+                <td th:text="${kel.kecamatan.nama}"></td>
+                <td><a th:href="${'/kelurahan/hapus/' + kel.id}" class="btn btn-info">Hapus</a>
+                    <a th:href="${'/kelurahan/form/' + kel.id}" class="btn btn-danger">Edit</a>   </td>
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+</section>
+</body>
+</html>
